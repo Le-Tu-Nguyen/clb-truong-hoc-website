@@ -121,8 +121,3 @@ git --version
    npm run start
    ```
 
-## Bản quyền
-
-Bản quyền hiện tại: Copyright (c) 2026 Lê Tú Nguyên. All rights reserved.
-
-Dự án được điều chỉnh và phát triển dựa trên [Barington Computer Club Website] (https://github.com/Barrington-Computer-Club/BarringtonComputerClubWebsite.git) để phục vụ mục tiêu học tập và triển khai.
