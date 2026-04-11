@@ -13,27 +13,29 @@ const Navbar = () => {
           courses: "Courses",
           ai: "AI & Network",
           contact: "Contact",
+          register: "Register",
         }
       : {
           home: "Trang chủ",
           courses: "Các khóa học",
           ai: "AI & Network",
           contact: "Liên hệ",
+          register: "Đăng ký",
         };
 
   return (
     <nav className="top-navbar">
       <div className="top-navbar-inner">
-        <Link href="/" className="brand-block" aria-label="Lac Hong University">
+        <Link href="/" className="brand-block" aria-label={strings.nav.universityName}>
           <Image
             src="https://lhu.edu.vn/Data/News/446/images/LHU_ASU_ENG_1_.png"
-            alt="Đại học Lạc Hồng"
+            alt={strings.nav.universityName}
             className="brand-logo"
             width={46}
             height={46}
             priority
           />
-          <div className="brand-text">ĐẠI HỌC LẠC HỒNG</div>
+          <div className="brand-text">{strings.nav.universityName}</div>
         </Link>
 
         <div className="top-navbar-right">
@@ -41,6 +43,7 @@ const Navbar = () => {
             <Link href="/">{labels.home}</Link>
             <Link href="/events">{labels.courses}</Link>
             <Link href="/dashboard">{labels.ai}</Link>
+            <Link href="/register">{labels.register}</Link>
             <Link href="/contact">{labels.contact}</Link>
           </div>
 

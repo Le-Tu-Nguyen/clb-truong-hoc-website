@@ -15,6 +15,7 @@ type LanguageContextValue = {
 const translations = {
   vi: {
     nav: {
+      universityName: "ĐẠI HỌC LẠC HỒNG",
       home: "Trang chủ",
       about: "Giới thiệu",
       events: "Sự kiện",
@@ -147,6 +148,7 @@ const translations = {
   },
   en: {
     nav: {
+      universityName: "LAC HONG UNIVERSITY",
       home: "Home",
       about: "About",
       events: "Events",

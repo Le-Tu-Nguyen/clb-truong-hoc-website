@@ -54,11 +54,6 @@ export default function EventsPage() {
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-4">
-      <header className="mb-8 border-l-8 border-blue-600 pl-6">
-        <h1 className="text-4xl font-black uppercase italic">Sự kiện nổi bật</h1>
-        <p className="text-gray-500 dark:text-gray-300 mt-2">Đừng bỏ lỡ các hoạt động hấp dẫn sắp tới</p>
-      </header>
-
       <section className="mb-8 p-4 bg-white dark:bg-zinc-900/70 border border-gray-200 dark:border-zinc-700 rounded-xl shadow-sm transition-all duration-300">
         <Space wrap>
           <Select

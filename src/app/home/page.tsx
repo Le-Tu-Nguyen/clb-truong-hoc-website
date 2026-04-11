@@ -5,7 +5,6 @@ import { useLanguage } from "../../components/LanguageContext";
 
 export default function HomePage() {
   const { language } = useLanguage();
-
   const text =
     language === "en"
       ? {
