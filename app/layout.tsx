@@ -3,6 +3,7 @@ import "antd/dist/reset.css";
 import "./globals.css";
 import Navbar from "../src/components/Navbar";
 import Footer from "../src/components/Footer";
+import NetworkLines from "../src/components/NetworkLines";
 import { ThemeProvider } from "../src/components/ThemeContext";
 import { LanguageProvider } from "../src/components/LanguageContext";
 
@@ -17,9 +18,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased bg-transparent transition-colors duration-300">
         <LanguageProvider>
           <ThemeProvider>
-            <Navbar />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
+            <div className="page-wrapper-with-network">
+              <NetworkLines />
+              <Navbar />
+              <main className="main-content-with-network">{children}</main>
+              <Footer />
+            </div>
           </ThemeProvider>
         </LanguageProvider>
       </body>

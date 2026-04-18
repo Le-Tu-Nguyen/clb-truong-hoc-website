@@ -14,8 +14,8 @@ type MemberIntro = {
 
 export default function ContactPage() {
   const { language, strings } = useLanguage();
-  const mentorImageLink = "https://drive.google.com/file/d/16aHmnLgIIotnmFzyjo_D25FagPwVFshx/view?usp=drive_link";
-  const mentorImageSrc = "https://drive.google.com/uc?export=view&id=16aHmnLgIIotnmFzyjo_D25FagPwVFshx";
+  const mentorImageLink = "https://cdn.phototourl.com/free/2026-04-18-56bdccf8-9743-46a3-972b-09601ca490ce.jpg";
+  const mentorImageSrc = "https://cdn.phototourl.com/free/2026-04-18-56bdccf8-9743-46a3-972b-09601ca490ce.jpg";
 
   const [introForm, setIntroForm] = useState({
     fullName: "",
@@ -176,18 +176,18 @@ export default function ContactPage() {
 
       <section className="contact-mentor-card">
         <div className="contact-mentor-visual">
-          <a href={mentorImageLink} target="_blank" rel="noreferrer" className="contact-mentor-image-link" aria-label="Giảng viên Nguyễn Vũ Thiên Phúc">
+          <a href={mentorImageLink} target="_blank" rel="noreferrer" className="contact-mentor-image-link" aria-label={strings.contact.mentorAriaLabel}>
             <div className="contact-mentor-avatar-shell">
-              <img src={mentorImageSrc} alt="GV Nguyễn Vũ Thiên Phúc" className="contact-mentor-avatar" />
+              <img src={mentorImageSrc} alt={strings.contact.mentorAriaLabel} className="contact-mentor-avatar" />
             </div>
           </a>
         </div>
 
         <div className="contact-mentor-info">
-          <h2>Gv: Nguyễn Vũ Thiên Phúc</h2>
-          <p>Chủ nhiệm Học viện Mạng - Clb Fitwan</p>
-          <p>Mail: phucnvt@lhu.edu.vn</p>
-          <p>Sdt: 0943602479</p>
+          <h2>{strings.contact.mentorName}</h2>
+          <p>{strings.contact.mentorRole}</p>
+          <p>{strings.contact.mentorEmail}</p>
+          <p>{strings.contact.mentorPhone}</p>
         </div>
       </section>
 

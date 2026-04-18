@@ -86,6 +86,11 @@ const translations = {
       title: "Liên hệ CLB",
       description:
         "Nếu bạn cần thêm thông tin hoặc muốn hợp tác cùng CLB, vui lòng liên hệ qua các kênh dưới đây.",
+      mentorAriaLabel: "Giảng viên Nguyễn Vũ Thiên Phúc",
+      mentorName: "GV: Nguyễn Vũ Thiên Phúc",
+      mentorRole: "Chủ nhiệm Học viện Mạng - Clb Fitwan",
+      mentorEmail: "Mail: phucnvt@lhu.edu.vn",
+      mentorPhone: "Sdt: 0943602479",
       infoTitle: "Thông tin liên hệ",
       email: "Email: clbtruonghoc@example.com",
       phone: "Số điện thoại: 0123 456 789",
@@ -214,6 +219,11 @@ const translations = {
       title: "Contact the club",
       description:
         "If you need more information or want to collaborate with the club, please reach out through the channels below.",
+      mentorAriaLabel: "Instructor Nguyen Vu Thien Phuc",
+      mentorName: "Instructor: Nguyen Vu Thien Phuc",
+      mentorRole: "Head of the Network Academy - Fitwan Club",
+      mentorEmail: "Email: phucnvt@lhu.edu.vn",
+      mentorPhone: "Phone: 0943602479",
       infoTitle: "Contact information",
       email: "Email: clbtruonghoc@example.com",
       phone: "Phone: 0123 456 789",
