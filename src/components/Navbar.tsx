@@ -6,23 +6,6 @@ import { useLanguage } from "./LanguageContext";
 const Navbar = () => {
   const { language, setLanguage, strings } = useLanguage();
 
-  const labels =
-    language === "en"
-      ? {
-          home: "Home",
-          courses: "Courses",
-          ai: "AI & Network",
-          contact: "Contact",
-          register: "Register",
-        }
-      : {
-          home: "Trang chủ",
-          courses: "Các khóa học",
-          ai: "AI & Network",
-          contact: "Liên hệ",
-          register: "Đăng ký",
-        };
-
   return (
     <nav className="top-navbar">
       <div className="top-navbar-inner">
@@ -40,22 +23,40 @@ const Navbar = () => {
 
         <div className="top-navbar-right">
           <div className="top-navbar-links">
-            <Link href="/">{labels.home}</Link>
-            <Link href="/events">{labels.courses}</Link>
-            <Link href="/dashboard">{labels.ai}</Link>
-            <Link href="/register">{labels.register}</Link>
-            <Link href="/contact">{labels.contact}</Link>
+            <Link href="/">{strings.nav.home}</Link>
+            <a
+              href="https://cs.lhu.edu.vn/208/43373/CNTT-Cau-lac-bo-Mang-Cisco-Khoa-Cong-nghe-thong-tin.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {strings.nav.about}
+            </a>
+            <Link href="/events">{strings.nav.events}</Link>
+            <Link href="/dashboard">{strings.nav.dashboard}</Link>
+            <Link href="/contact">{strings.nav.contact}</Link>
           </div>
 
-          <select
-            aria-label={strings.nav.language}
-            value={language}
-            className="language-select"
-            onChange={(event) => setLanguage(event.target.value as "vi" | "en")}
-          >
-            <option value="vi">VI</option>
-            <option value="en">EN</option>
-          </select>
+          <div className="top-navbar-actions">
+            <div className="language-switch" role="group" aria-label={strings.nav.language}>
+              <button
+                type="button"
+                className={`language-switch-item ${language === "vi" ? "active" : ""}`}
+                onClick={() => setLanguage("vi")}
+              >
+                VI
+              </button>
+              <button
+                type="button"
+                className={`language-switch-item ${language === "en" ? "active" : ""}`}
+                onClick={() => setLanguage("en")}
+              >
+                EN
+              </button>
+            </div>
+            <Link href="/register" className="navbar-cta-link">
+              {strings.nav.register}
+            </Link>
+          </div>
         </div>
       </div>
     </nav>

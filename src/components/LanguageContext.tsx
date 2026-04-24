@@ -19,7 +19,7 @@ const translations = {
       home: "Trang chủ",
       about: "Giới thiệu",
       events: "Sự kiện",
-      dashboard: "Dashboard",
+      dashboard: "Thống kê",
       contact: "Liên hệ",
       register: "Tham gia ngay",
       themeDefault: "Theme mặc định",
@@ -114,7 +114,7 @@ const translations = {
       noEvents: "Không tìm thấy sự kiện phù hợp",
     },
     dashboard: {
-      headerTitle: "Dashboard thống kê",
+      headerTitle: "Bảng điều khiển thống kê",
       headerSubtitle: "Tổng quan hiệu suất CLB với dữ liệu động API.",
       members: "Thành viên",
       events: "Sự kiện",

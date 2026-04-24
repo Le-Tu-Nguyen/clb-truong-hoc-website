@@ -1,195 +1,132 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
 import { useLanguage } from "../../components/LanguageContext";
 
-type MemberIntro = {
+type ContactMember = {
   id: number;
-  fullName: string;
-  studentId: string;
+  nameVi: string;
+  nameEn: string;
+  roleVi: string;
+  roleEn: string;
   email: string;
-  intro: string;
-  createdAt: string;
+  hideEmailPrefix?: boolean;
+  phone: string;
+  status?: string;
+  imageSrc: string;
+  imageLink: string;
+  imageAltVi: string;
+  imageAltEn: string;
 };
+
+const contactMembers: ContactMember[] = [
+  {
+    id: 1,
+    nameVi: "GV: Nguyễn Vũ Thiên Phúc",
+    nameEn: "Instructor: Nguyen Vu Thien Phuc",
+    roleVi: "Chủ nhiệm Học viện Mạng - CLB FITWAN",
+    roleEn: "Head of Network Academy - FITWAN Club",
+    email: "phucnvt@lhu.edu.vn",
+    phone: "0943602479",
+    imageSrc: "https://cdn.phototourl.com/free/2026-04-18-56bdccf8-9743-46a3-972b-09601ca490ce.jpg",
+    imageLink: "https://cdn.phototourl.com/free/2026-04-18-56bdccf8-9743-46a3-972b-09601ca490ce.jpg",
+    imageAltVi: "Giảng viên Nguyễn Vũ Thiên Phúc",
+    imageAltEn: "Instructor Nguyen Vu Thien Phuc",
+  },
+  {
+    id: 2,
+    nameVi: "SV: Trần Đăng Khoa",
+    nameEn: "Student: Tran Dang Khoa",
+    roleVi: "Phó phòng Cisco - Học viện mạng",
+    roleEn: "Vice Head of Cisco Division - Network Academy",
+    email: "Khóa: 22",
+    hideEmailPrefix: true,
+    phone: "",
+    status: "Trạng thái: đã tốt nghiệp",
+    imageSrc: "https://cdn.phototourl.com/free/2026-04-18-a394bffe-76b6-4163-9c37-3d91eb9d0b9c.jpg",
+    imageLink: "https://cdn.phototourl.com/free/2026-04-18-a394bffe-76b6-4163-9c37-3d91eb9d0b9c.jpg",
+    imageAltVi: "Sinh viên Trần Đăng Khoa",
+    imageAltEn: "Student Tran Dang Khoa",
+  },
+  {
+    id: 3,
+    nameVi: "SV: Lê Ngọc Anh",
+    nameEn: "Student: Le Ngoc Anh",
+    roleVi: "Trưởng ban truyền thông CLB FITWAN",
+    roleEn: "Head of Communications - FITWAN Club",
+    email: "anhlng.fitwan@lhu.edu.vn",
+    phone: "0917456789",
+    imageSrc: "https://randomuser.me/api/portraits/women/44.jpg",
+    imageLink: "https://randomuser.me/api/portraits/women/44.jpg",
+    imageAltVi: "Sinh viên Lê Ngọc Anh",
+    imageAltEn: "Student Le Ngoc Anh",
+  },
+];
 
 export default function ContactPage() {
   const { language, strings } = useLanguage();
-  const mentorImageLink = "https://cdn.phototourl.com/free/2026-04-18-56bdccf8-9743-46a3-972b-09601ca490ce.jpg";
-  const mentorImageSrc = "https://cdn.phototourl.com/free/2026-04-18-56bdccf8-9743-46a3-972b-09601ca490ce.jpg";
 
-  const [introForm, setIntroForm] = useState({
-    fullName: "",
-    studentId: "",
-    email: "",
-    intro: "",
-  });
-  const [introFilter, setIntroFilter] = useState({
-    studentId: "",
-    email: "",
-  });
-  const [introList, setIntroList] = useState<MemberIntro[]>([]);
-  const [introMessage, setIntroMessage] = useState("");
-  const [introError, setIntroError] = useState("");
-  const [introLoading, setIntroLoading] = useState(false);
-
-  const introText =
+  const memberSectionText =
     language === "en"
       ? {
-          sectionTitle: "Member introduction",
-          sectionDescription: "Submit your short profile as a dedicated section on the contact page.",
-          intro: "Member introduction *",
-          submit: "Submit introduction",
-          submitSuccess: "Member introduction submitted successfully.",
-          submitFail: "Unable to submit member introduction. Please try again.",
-          required: "Please complete all required member introduction fields.",
-          studentIdInvalid: "Student ID must contain digits only.",
-          searchTitle: "Track member introductions",
-          searchDescription: "Search by student ID or email to view submitted introductions.",
-          searchStudentId: "Search by student ID",
-          searchEmail: "Search by email",
-          searchButton: "Search",
-          clearButton: "Clear filter",
-          loading: "Loading introductions...",
-          noData: "No introductions found.",
-          tableName: "Full name",
-          tableStudentId: "Student ID",
-          tableIntro: "Introduction",
-          tableCreatedAt: "Submitted at",
+          title: "Member profiles",
+          emailPrefix: "Email",
+          phonePrefix: "Phone",
         }
       : {
-          sectionTitle: "Giới thiệu thành viên",
-          sectionDescription: "Gửi phần giới thiệu cá nhân tại trang Liên hệ.",
-          intro: "Giới thiệu thành viên *",
-          submit: "Gửi giới thiệu",
-          submitSuccess: "Đã gửi giới thiệu thành viên thành công.",
-          submitFail: "Không thể gửi giới thiệu thành viên. Vui lòng thử lại.",
-          required: "Vui lòng nhập đầy đủ các trường bắt buộc của giới thiệu thành viên.",
-          studentIdInvalid: "Mã số sinh viên chỉ được nhập số.",
-          searchTitle: "Theo dõi giới thiệu thành viên",
-          searchDescription: "Tìm theo MSSV hoặc email để xem phần giới thiệu đã gửi.",
-          searchStudentId: "Tìm theo MSSV",
-          searchEmail: "Tìm theo email",
-          searchButton: "Tìm giới thiệu",
-          clearButton: "Xóa lọc",
-          loading: "Đang tải phần giới thiệu...",
-          noData: "Chưa có giới thiệu thành viên phù hợp.",
-          tableName: "Họ tên",
-          tableStudentId: "MSSV",
-          tableIntro: "Giới thiệu",
-          tableCreatedAt: "Ngày gửi",
+          title: "Giới thiệu thành viên",
+          emailPrefix: "Mail",
+          phonePrefix: "Sdt",
         };
-
-  const fetchMemberIntros = useCallback(async (filters?: { studentId?: string; email?: string }) => {
-    setIntroLoading(true);
-    setIntroError("");
-
-    const query = new URLSearchParams({
-      studentId: filters?.studentId ?? "",
-      email: filters?.email ?? "",
-    }).toString();
-
-    try {
-      const response = await fetch(`/api/member-intros?${query}`);
-      const data = (await response.json()) as { intros?: MemberIntro[] };
-      setIntroList(data.intros || []);
-    } catch {
-      setIntroError(introText.submitFail);
-    } finally {
-      setIntroLoading(false);
-    }
-  }, [introText.submitFail]);
-
-  useEffect(() => {
-    fetchMemberIntros();
-  }, [fetchMemberIntros]);
-
-  function handleIntroChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const value = e.target.name === "studentId" ? e.target.value.replace(/\D/g, "") : e.target.value;
-    setIntroForm((prev) => ({
-      ...prev,
-      [e.target.name]: value,
-    }));
-  }
-
-  async function handleIntroSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setIntroMessage("");
-    setIntroError("");
-
-    if (!introForm.fullName || !introForm.studentId || !introForm.email || !introForm.intro) {
-      setIntroError(introText.required);
-      return;
-    }
-
-    if (!/^\d+$/.test(introForm.studentId)) {
-      setIntroError(introText.studentIdInvalid);
-      return;
-    }
-
-    try {
-      const response = await fetch("/api/member-intros", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(introForm),
-      });
-
-      if (!response.ok) {
-        throw new Error("submit intro failed");
-      }
-
-      setIntroMessage(introText.submitSuccess);
-      setIntroForm({
-        fullName: "",
-        studentId: "",
-        email: "",
-        intro: "",
-      });
-      await fetchMemberIntros(introFilter);
-    } catch {
-      setIntroError(introText.submitFail);
-    }
-  }
-
-  function handleIntroFilterChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setIntroFilter((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  }
-
-  async function handleIntroSearch(e: React.FormEvent) {
-    e.preventDefault();
-    await fetchMemberIntros(introFilter);
-  }
-
-  async function clearIntroFilter() {
-    const resetFilter = { studentId: "", email: "" };
-    setIntroFilter(resetFilter);
-    await fetchMemberIntros(resetFilter);
-  }
 
   return (
     <div className="page-container">
       <h1>{strings.contact.title}</h1>
 
-      <section className="contact-mentor-card">
-        <div className="contact-mentor-visual">
-          <a href={mentorImageLink} target="_blank" rel="noreferrer" className="contact-mentor-image-link" aria-label={strings.contact.mentorAriaLabel}>
-            <div className="contact-mentor-avatar-shell">
-              <img src={mentorImageSrc} alt={strings.contact.mentorAriaLabel} className="contact-mentor-avatar" />
-            </div>
-          </a>
-        </div>
+      {(() => {
+        const [firstMember, ...remainingMembers] = contactMembers;
 
-        <div className="contact-mentor-info">
-          <h2>{strings.contact.mentorName}</h2>
-          <p>{strings.contact.mentorRole}</p>
-          <p>{strings.contact.mentorEmail}</p>
-          <p>{strings.contact.mentorPhone}</p>
-        </div>
-      </section>
+        const renderMemberCard = (member: ContactMember) => {
+          const displayName = language === "en" ? member.nameEn : member.nameVi;
+          const displayRole = language === "en" ? member.roleEn : member.roleVi;
+          const displayAlt = language === "en" ? member.imageAltEn : member.imageAltVi;
+
+          return (
+            <section className="contact-mentor-card" key={member.id}>
+              <div className="contact-mentor-visual">
+                <a href={member.imageLink} target="_blank" rel="noreferrer" className="contact-mentor-image-link" aria-label={displayAlt}>
+                  <div className="contact-mentor-avatar-shell">
+                    <img src={member.imageSrc} alt={displayAlt} className="contact-mentor-avatar" />
+                  </div>
+                </a>
+              </div>
+
+              <div className="contact-mentor-info">
+                <h2>{displayName}</h2>
+                <p>{displayRole}</p>
+                <p>{member.hideEmailPrefix ? member.email : `${memberSectionText.emailPrefix}: ${member.email}`}</p>
+                {member.phone ? (
+                  <p>
+                    {memberSectionText.phonePrefix}: {member.phone}
+                  </p>
+                ) : null}
+                {member.status ? <p>{member.status}</p> : null}
+              </div>
+            </section>
+          );
+        };
+
+        return (
+          <>
+            {firstMember ? <div className="contact-members-list">{renderMemberCard(firstMember)}</div> : null}
+
+            <h2>{memberSectionText.title}</h2>
+
+            <div className="contact-members-list">
+              {remainingMembers.map((member) => renderMemberCard(member))}
+            </div>
+          </>
+        );
+      })()}
 
       <p>{strings.contact.description}</p>
 
@@ -206,101 +143,6 @@ export default function ContactPage() {
         <li>{strings.contact.instagram}</li>
         <li>{strings.contact.zalo}</li>
       </ul>
-
-      <section className="duty-section">
-        <h2>{introText.sectionTitle}</h2>
-        <p>{introText.sectionDescription}</p>
-
-        <div className="form-container duty-form-wrap">
-          <form onSubmit={handleIntroSubmit}>
-            <div className="duty-grid">
-              <div className="form-group">
-                <label>{strings.register.fullName}</label>
-                <input name="fullName" value={introForm.fullName} onChange={handleIntroChange} placeholder={strings.register.placeholderName} />
-              </div>
-
-              <div className="form-group">
-                <label>{strings.register.studentId}</label>
-                <input
-                  name="studentId"
-                  value={introForm.studentId}
-                  onChange={handleIntroChange}
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  placeholder={strings.register.placeholderId}
-                />
-              </div>
-
-              <div className="form-group">
-                <label>{strings.register.email}</label>
-                <input type="email" name="email" value={introForm.email} onChange={handleIntroChange} placeholder={strings.register.placeholderEmail} />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <label>{introText.intro}</label>
-              <textarea name="intro" value={introForm.intro} onChange={handleIntroChange} placeholder={strings.register.placeholderInterest} />
-            </div>
-
-            <button type="submit" className="btn btn-primary">
-              {introText.submit}
-            </button>
-
-            {introMessage && <p className="duty-message success">{introMessage}</p>}
-            {introError && <p className="duty-message error">{introError}</p>}
-          </form>
-        </div>
-      </section>
-
-      <section className="duty-section">
-        <h2>{introText.searchTitle}</h2>
-        <p>{introText.searchDescription}</p>
-
-        <form className="duty-filter-form" onSubmit={handleIntroSearch}>
-          <input
-            name="studentId"
-            value={introFilter.studentId}
-            onChange={handleIntroFilterChange}
-            placeholder={introText.searchStudentId}
-          />
-          <input name="email" value={introFilter.email} onChange={handleIntroFilterChange} placeholder={introText.searchEmail} />
-          <button className="btn btn-primary" type="submit">
-            {introText.searchButton}
-          </button>
-          <button className="btn btn-secondary" type="button" onClick={clearIntroFilter}>
-            {introText.clearButton}
-          </button>
-        </form>
-
-        <div className="duty-table-wrap">
-          {introLoading ? (
-            <p>{introText.loading}</p>
-          ) : introList.length === 0 ? (
-            <p>{introText.noData}</p>
-          ) : (
-            <table className="duty-table">
-              <thead>
-                <tr>
-                  <th>{introText.tableName}</th>
-                  <th>{introText.tableStudentId}</th>
-                  <th>{introText.tableIntro}</th>
-                  <th>{introText.tableCreatedAt}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {introList.map((item) => (
-                  <tr key={item.id}>
-                    <td>{item.fullName}</td>
-                    <td>{item.studentId}</td>
-                    <td>{item.intro}</td>
-                    <td>{new Date(item.createdAt).toLocaleString(language === "en" ? "en-GB" : "vi-VN")}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </div>
-      </section>
     </div>
   );
 }
