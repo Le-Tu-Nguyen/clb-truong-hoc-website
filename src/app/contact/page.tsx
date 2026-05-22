@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLanguage } from "../../components/LanguageContext";
 
 type ContactMember = {
@@ -26,9 +27,9 @@ const contactMembers: ContactMember[] = [
     roleVi: "Chủ nhiệm Học viện Mạng - CLB FITWAN",
     roleEn: "Head of Network Academy - FITWAN Club",
     email: "phucnvt@lhu.edu.vn",
-    phone: "0943602479",
-    imageSrc: "https://cdn.phototourl.com/free/2026-04-18-56bdccf8-9743-46a3-972b-09601ca490ce.jpg",
-    imageLink: "https://cdn.phototourl.com/free/2026-04-18-56bdccf8-9743-46a3-972b-09601ca490ce.jpg",
+    phone: "0943602***",
+    imageSrc: "https://cdn.phototourl.com/free/2026-05-21-045cef44-5c18-4a46-8644-9181d2d42b48.png",
+    imageLink: "https://cdn.phototourl.com/free/2026-05-21-045cef44-5c18-4a46-8644-9181d2d42b48.png",
     imageAltVi: "Giảng viên Nguyễn Vũ Thiên Phúc",
     imageAltEn: "Instructor Nguyen Vu Thien Phuc",
   },
@@ -36,29 +37,27 @@ const contactMembers: ContactMember[] = [
     id: 2,
     nameVi: "SV: Trần Đăng Khoa",
     nameEn: "Student: Tran Dang Khoa",
-    roleVi: "Phó phòng Cisco - Học viện mạng",
-    roleEn: "Vice Head of Cisco Division - Network Academy",
-    email: "Khóa: 22",
-    hideEmailPrefix: true,
-    phone: "",
-    status: "Trạng thái: đã tốt nghiệp",
-    imageSrc: "https://cdn.phototourl.com/free/2026-04-18-a394bffe-76b6-4163-9c37-3d91eb9d0b9c.jpg",
-    imageLink: "https://cdn.phototourl.com/free/2026-04-18-a394bffe-76b6-4163-9c37-3d91eb9d0b9c.jpg",
+    roleVi: "Phó chủ nhiệm Học viện mạng - CLB FITWAN",
+    roleEn: "Vice Head of Network Academy - FITWAN Club",
+    email: "KhoaTran.FitWan@LHU.edu.vn",
+    phone: "0347333***",
+    imageSrc: "https://cdn.phototourl.com/free/2026-05-21-4c6b4d30-1c06-4dc1-b719-b7914facc199.png",
+    imageLink: "https://cdn.phototourl.com/free/2026-05-21-4c6b4d30-1c06-4dc1-b719-b7914facc199.png",
     imageAltVi: "Sinh viên Trần Đăng Khoa",
     imageAltEn: "Student Tran Dang Khoa",
   },
   {
     id: 3,
-    nameVi: "SV: Lê Ngọc Anh",
-    nameEn: "Student: Le Ngoc Anh",
+    nameVi: "SV: Lê Tú Nguyên",
+    nameEn: "Student: Le Tu Nguyen",
     roleVi: "Trưởng ban truyền thông CLB FITWAN",
     roleEn: "Head of Communications - FITWAN Club",
-    email: "anhlng.fitwan@lhu.edu.vn",
-    phone: "0917456789",
-    imageSrc: "https://randomuser.me/api/portraits/women/44.jpg",
-    imageLink: "https://randomuser.me/api/portraits/women/44.jpg",
-    imageAltVi: "Sinh viên Lê Ngọc Anh",
-    imageAltEn: "Student Le Ngoc Anh",
+    email: "NguyenLT.FitWan@LHU.edu.vn",
+    phone: "0359663***",
+    imageSrc: "https://cdn.phototourl.com/free/2026-05-21-74e02feb-e484-4ed1-ae78-74965f987048.png",
+    imageLink: "https://cdn.phototourl.com/free/2026-05-21-74e02feb-e484-4ed1-ae78-74965f987048.png",
+    imageAltVi: "Sinh viên Lê Tú Nguyên",
+    imageAltEn: "Student Le Tu Nguyen",
   },
 ];
 
@@ -95,7 +94,7 @@ export default function ContactPage() {
               <div className="contact-mentor-visual">
                 <a href={member.imageLink} target="_blank" rel="noreferrer" className="contact-mentor-image-link" aria-label={displayAlt}>
                   <div className="contact-mentor-avatar-shell">
-                    <img src={member.imageSrc} alt={displayAlt} className="contact-mentor-avatar" />
+                    <Image src={member.imageSrc} alt={displayAlt} className="contact-mentor-avatar" width={240} height={240} />
                   </div>
                 </a>
               </div>

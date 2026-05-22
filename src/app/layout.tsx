@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "antd/dist/reset.css";
 import "./globals.css";
 import Navbar from "../components/Navbar";
+import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import NetworkLines from "../components/NetworkLines";
 import { ThemeProvider } from "../components/ThemeContext";
@@ -22,6 +23,7 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="page-wrapper-with-network">
             <NetworkLines />
+            <Banner />
             <Navbar />
             <main className="main-content-with-network">{children}</main>
             <Footer />

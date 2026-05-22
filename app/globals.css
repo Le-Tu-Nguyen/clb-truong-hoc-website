@@ -222,6 +222,7 @@ a {
   white-space: pre-line;
   margin: 0;
   background: linear-gradient(180deg, #ffd468 0%, #ffbc3b 58%, #7e7fff 100%);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -395,6 +396,48 @@ a {
   position: relative;
   z-index: 1;
   line-height: 1.8;
+}
+
+/* Banner marquee */
+.site-banner {
+  position: relative;
+  z-index: 6;
+}
+
+.site-banner__mask {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* track contains two copies of the message so we can translate -50% for a smooth continuous loop */
+.site-banner__track {
+  display: inline-flex;
+  gap: 6rem;
+  align-items: center;
+  padding: 10px 16px;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee 12s linear infinite;
+}
+
+.site-banner__item {
+  flex: none;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .site-banner__track {
+    animation: none;
+  }
 }
 
 .hero-badge {
@@ -634,6 +677,45 @@ a {
   border: 1px solid var(--border);
 }
 
+.form-container,
+.form-container p,
+.form-container label,
+.duty-section,
+.duty-section p,
+.duty-section label {
+  color: #132033;
+}
+
+.duty-section h2,
+.duty-section p,
+.duty-section label,
+.duty-section strong,
+.duty-section li,
+.duty-section td,
+.duty-section th,
+.review-item-card p,
+.review-item-card strong {
+  color: #f5f8ff;
+}
+
+.duty-section p,
+.duty-section label,
+.review-item-card p {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.duty-section h2 {
+  color: #ffffff;
+}
+
+.duty-section p {
+  color: #dbeafe;
+}
+
+.review-item-card {
+  color: #f5f8ff;
+}
+
 .form-group {
   margin-bottom: 18px;
 }
@@ -650,6 +732,7 @@ a {
   display: block;
   margin-bottom: 8px;
   font-weight: bold;
+  color: #132033;
 }
 
 .form-group input,
@@ -729,6 +812,12 @@ a {
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 8px;
+}
+
+.duty-table-wrap p {
+  color: #132033;
+  font-weight: 700;
+  text-shadow: none;
 }
 
 .duty-table {
@@ -1041,7 +1130,7 @@ a {
   width: 100%;
   height: 2px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, transparent, #ffd56f, transparent);
+  background: linear-gradient(90deg, transparent, #ff.d56f, transparent);
   transform: scaleX(0);
   transform-origin: center;
   transition: transform 0.22s ease;

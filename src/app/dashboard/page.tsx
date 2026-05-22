@@ -113,10 +113,7 @@ export default function DashboardPage() {
 
   return (
     <div className="max-w-7xl mx-auto py-16 px-4">
-      <header className="mb-10 border-l-8 border-blue-600 pl-6">
-        <h1 className="text-4xl font-black uppercase italic">{strings.dashboard.headerTitle}</h1>
-        <p className="text-gray-500 dark:text-gray-300 mt-2">{strings.dashboard.headerSubtitle}</p>
-      </header>
+      {/* Header removed per request: keep layout spacing if needed */}
 
       <section className="stats-band-lhu">
         <div className="stats-story-lhu">

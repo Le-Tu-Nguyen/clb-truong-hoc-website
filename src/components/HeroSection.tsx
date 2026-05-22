@@ -58,7 +58,14 @@ export default function HeroSection() {
         </div>
 
         <div className="hero-image-wrap-lhu">
-          <Image src="/hero.jpg" alt="Phòng lab mạng" className="hero-image-lhu" width={900} height={640} priority />
+          <Image
+            src="https://cdn.phototourl.com/free/2026-05-21-116b02d2-f857-4282-8f14-73c2c74f1414.png"
+            alt="Phòng lab mạng"
+            className="hero-image-lhu"
+            width={900}
+            height={640}
+            priority
+          />
           <div className="hero-logo-on-image">
             <Image src="/logo.jpg" alt="Logo Đại học Lạc Hồng" width={104} height={104} className="hero-logo-badge" priority />
           </div>

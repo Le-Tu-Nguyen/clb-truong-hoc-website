@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "antd/dist/reset.css";
 import "./globals.css";
 import Navbar from "../src/components/Navbar";
+import Banner from "../src/components/Banner";
 import Footer from "../src/components/Footer";
 import NetworkLines from "../src/components/NetworkLines";
 import { ThemeProvider } from "../src/components/ThemeContext";
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ThemeProvider>
             <div className="page-wrapper-with-network">
               <NetworkLines />
+              <Banner />
               <Navbar />
               <main className="main-content-with-network">{children}</main>
               <Footer />

@@ -26,7 +26,7 @@ export default function HomePage() {
           detail: "View details",
           contactTitle: "Contact Information",
           contactAddress:
-            "Building B - Campus 1, Lac Hong University. 10 Huynh Van Nghe Street, Buu Long Ward, Bien Hoa City, Dong Nai Province.",
+            "Building C - Campus 1, Lac Hong University. 10 Huynh Van Nghe Street, Buu Long Ward, Bien Hoa City, Dong Nai Province.",
           contactEmail: "cntt@lhu.edu.vn",
           contactPhone: "(+84) 251 3 952 251",
           serviceTitle: "What We Build For Students",
@@ -67,7 +67,7 @@ export default function HomePage() {
           detail: "Xem chi tiết",
           contactTitle: "LIÊN HỆ HỌC VIỆN",
           contactAddress:
-            "Dãy nhà B - Cơ sở 1 Đại học Lạc Hồng. Số 10 Huỳnh Văn Nghệ, phường Bửu Long, TP. Biên Hòa, tỉnh Đồng Nai.",
+            "Dãy nhà C - Cơ sở 1 Đại học Lạc Hồng. Số 10 Huỳnh Văn Nghệ, phường Bửu Long, TP. Biên Hòa, tỉnh Đồng Nai.",
           contactEmail: "cntt@lhu.edu.vn",
           contactPhone: "(+84) 251 3 952 251",
           serviceTitle: "Chúng Tôi Xây Dựng Gì Cho Sinh Viên",

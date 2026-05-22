@@ -8,6 +8,16 @@ const nextConfig: NextConfig = {
 				hostname: "lhu.edu.vn",
 				pathname: "/Data/News/**",
 			},
+			{
+				protocol: "https",
+				hostname: "cdn.phototourl.com",
+				pathname: "/free/**",
+			},
+			{
+				protocol: "https",
+				hostname: "randomuser.me",
+				pathname: "/api/portraits/**",
+			},
 		],
 	},
 };
