@@ -398,6 +398,117 @@ a {
   line-height: 1.8;
 }
 
+/* Responsive helpers */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+img, picture, video, svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Top Navbar responsive styles */
+.top-navbar {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  padding: 12px 0;
+}
+.top-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-logo {
+  border-radius: 6px;
+}
+.brand-text {
+  font-weight: 700;
+  font-family: "Be Vietnam Pro", "Sora", sans-serif;
+}
+.top-navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.top-navbar-links {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+.top-navbar-links a {
+  color: inherit;
+}
+.top-navbar-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.language-switch {
+  display: flex;
+  gap: 6px;
+}
+.navbar-cta-link {
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+}
+
+/* Mobile specifics */
+.mobile-menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 20px;
+}
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .top-navbar-inner {
+    align-items: center;
+  }
+  .top-navbar-links {
+    display: none;
+  }
+  .mobile-menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    right: 16px;
+    top: 64px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    box-shadow: 0 12px 30px rgba(2,6,23,0.2);
+    min-width: 200px;
+  }
+  .mobile-menu.open {
+    display: block;
+  }
+}
+
 /* Banner marquee */
 .site-banner {
   position: relative;

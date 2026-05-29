@@ -19,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" suppressHydrationWarning>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </head>
       <body className="antialiased text-gray-900 bg-white transition-colors duration-300">
         <ThemeProvider>
           <div className="page-wrapper-with-network">
